@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BacklogRouteImport } from './routes/backlog'
+import { Route as PlanningRouteImport } from './routes/planning'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BacklogRoute = BacklogRouteImport.update({
+  id: '/backlog',
+  path: '/backlog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlanningRoute = PlanningRouteImport.update({
+  id: '/planning',
+  path: '/planning',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/backlog': typeof BacklogRoute
+  '/planning': typeof PlanningRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/backlog': typeof BacklogRoute
+  '/planning': typeof PlanningRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/backlog': typeof BacklogRoute
+  '/planning': typeof PlanningRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/backlog' | '/planning'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/backlog' | '/planning'
+  id: '__root__' | '/' | '/backlog' | '/planning'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BacklogRoute: typeof BacklogRoute
+  PlanningRoute: typeof PlanningRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/backlog': {
+      id: '/backlog'
+      path: '/backlog'
+      fullPath: '/backlog'
+      preLoaderRoute: typeof BacklogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/planning': {
+      id: '/planning'
+      path: '/planning'
+      fullPath: '/planning'
+      preLoaderRoute: typeof PlanningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BacklogRoute: BacklogRoute,
+  PlanningRoute: PlanningRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
