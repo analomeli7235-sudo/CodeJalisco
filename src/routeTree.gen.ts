@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AjustesRouteImport } from './routes/ajustes'
+import { Route as BacklogRouteImport } from './routes/backlog'
+import { Route as DesarrolloRouteImport } from './routes/desarrollo'
+import { Route as PlanningRouteImport } from './routes/planning'
+import { Route as ReportarRouteImport } from './routes/reportar'
+import { Route as RetrospectivaRouteImport } from './routes/retrospectiva'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AjustesRoute = AjustesRouteImport.update({
+  id: '/ajustes',
+  path: '/ajustes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BacklogRoute = BacklogRouteImport.update({
+  id: '/backlog',
+  path: '/backlog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DesarrolloRoute = DesarrolloRouteImport.update({
+  id: '/desarrollo',
+  path: '/desarrollo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlanningRoute = PlanningRouteImport.update({
+  id: '/planning',
+  path: '/planning',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportarRoute = ReportarRouteImport.update({
+  id: '/reportar',
+  path: '/reportar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RetrospectivaRoute = RetrospectivaRouteImport.update({
+  id: '/retrospectiva',
+  path: '/retrospectiva',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ajustes': typeof AjustesRoute
+  '/backlog': typeof BacklogRoute
+  '/desarrollo': typeof DesarrolloRoute
+  '/planning': typeof PlanningRoute
+  '/reportar': typeof ReportarRoute
+  '/retrospectiva': typeof RetrospectivaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ajustes': typeof AjustesRoute
+  '/backlog': typeof BacklogRoute
+  '/desarrollo': typeof DesarrolloRoute
+  '/planning': typeof PlanningRoute
+  '/reportar': typeof ReportarRoute
+  '/retrospectiva': typeof RetrospectivaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ajustes': typeof AjustesRoute
+  '/backlog': typeof BacklogRoute
+  '/desarrollo': typeof DesarrolloRoute
+  '/planning': typeof PlanningRoute
+  '/reportar': typeof ReportarRoute
+  '/retrospectiva': typeof RetrospectivaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/ajustes'
+    | '/backlog'
+    | '/desarrollo'
+    | '/planning'
+    | '/reportar'
+    | '/retrospectiva'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/ajustes'
+    | '/backlog'
+    | '/desarrollo'
+    | '/planning'
+    | '/reportar'
+    | '/retrospectiva'
+  id:
+    | '__root__'
+    | '/'
+    | '/ajustes'
+    | '/backlog'
+    | '/desarrollo'
+    | '/planning'
+    | '/reportar'
+    | '/retrospectiva'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AjustesRoute: typeof AjustesRoute
+  BacklogRoute: typeof BacklogRoute
+  DesarrolloRoute: typeof DesarrolloRoute
+  PlanningRoute: typeof PlanningRoute
+  ReportarRoute: typeof ReportarRoute
+  RetrospectivaRoute: typeof RetrospectivaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ajustes': {
+      id: '/ajustes'
+      path: '/ajustes'
+      fullPath: '/ajustes'
+      preLoaderRoute: typeof AjustesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/backlog': {
+      id: '/backlog'
+      path: '/backlog'
+      fullPath: '/backlog'
+      preLoaderRoute: typeof BacklogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/desarrollo': {
+      id: '/desarrollo'
+      path: '/desarrollo'
+      fullPath: '/desarrollo'
+      preLoaderRoute: typeof DesarrolloRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/planning': {
+      id: '/planning'
+      path: '/planning'
+      fullPath: '/planning'
+      preLoaderRoute: typeof PlanningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reportar': {
+      id: '/reportar'
+      path: '/reportar'
+      fullPath: '/reportar'
+      preLoaderRoute: typeof ReportarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/retrospectiva': {
+      id: '/retrospectiva'
+      path: '/retrospectiva'
+      fullPath: '/retrospectiva'
+      preLoaderRoute: typeof RetrospectivaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AjustesRoute: AjustesRoute,
+  BacklogRoute: BacklogRoute,
+  DesarrolloRoute: DesarrolloRoute,
+  PlanningRoute: PlanningRoute,
+  ReportarRoute: ReportarRoute,
+  RetrospectivaRoute: RetrospectivaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
