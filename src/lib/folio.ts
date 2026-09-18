@@ -12,8 +12,14 @@ export interface BorradorReporte {
   ubicacion: string;
 }
 
-export function validarReporte(datos: BorradorReporte): Record<string, string> {
-  const errores: Record<string, string> = {};
+export interface ErroresReporte {
+  categoria?: string;
+  descripcion?: string;
+  ubicacion?: string;
+}
+
+export function validarReporte(datos: BorradorReporte): ErroresReporte {
+  const errores: ErroresReporte = {};
   if (!datos.categoria) errores.categoria = "Selecciona una categoría.";
   if (datos.descripcion.trim().length < 15)
     errores.descripcion = "Describe el problema con al menos 15 caracteres.";
